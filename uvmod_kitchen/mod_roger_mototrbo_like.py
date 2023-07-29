@@ -1,7 +1,7 @@
 # If you want, configure these two parameters to change the frequencies of the two tones.
 # The delay, sadly, is fixed to (tone 1 for 150ms), (tone 2 for 80ms) for now because I'm lazy.
 tone1 = int(1540 * 10.32444) # change 1540 to any frequency in Hz
-tone2 = int(1310 * 10.32444) # change 1310 to any frequency in Hz
+tone2 = int(1050 * 10.32444) # change 1310 to any frequency in Hz
 
 ##--------------------- do not modify below this line ---------------------------------------------------
 import os,sys,struct
