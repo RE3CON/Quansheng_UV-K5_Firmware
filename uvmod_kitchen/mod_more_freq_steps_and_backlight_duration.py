@@ -3,7 +3,7 @@
 # change below steps to new ones, values are in Hz
 # You can add reasonably more steps here
 
-new_freq_steps = [2500, 5000, 6250, 10000, 12500, 25000, 8330, 500000, 10, 1250, 20000]
+new_freq_steps = [2500, 5000, 6250, 10000, 12500, 25000, 8330, 500000, 10, 1250, 20000, 1000000]
 
 # the stock firmware limits backlight duration to 5 seconds max. this mod allows to change the maximum limit. 
 # the ABR duration can then be changed on the radio using the normal menu, and it will be persistent after reboot
