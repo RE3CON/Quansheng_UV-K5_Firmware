@@ -8,7 +8,7 @@ You can select what you want to include in your modded firmware. If you want unl
 ## Documents - [/docs](/docs)
 Some (incomplete) documents with info about CPU I/O pins, memory mappings, firmware format etc. 
 
-## Font and graphics - [/font_and_graphics](/font_and_graphics)
+## Font and graphics - [/font_and_graphics](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/tree/main/font_and_graphics)
 Simple python script which extracts from firmware all bitmaps used in radio's user interface. It works as substitute of documentation.
 
 ## Datasheets and drawings - [/hardware](/hardware)
