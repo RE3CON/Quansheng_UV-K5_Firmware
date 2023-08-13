@@ -14,4 +14,8 @@ Links:<br>
 [4pda use Google Translate](https://4pda.to/forum/index.php?showtopic=1071343&st=400)
 
 ## Readme:
-cfg_mem_map.md
+[cfg_mem_map](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/blob/main/docs/cfg_mem_map.md)<br>
+[communication](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/blob/main/docs/communication.md)<br>
+[file_version_is_not_match](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/blob/main/docs/file_version_is_not_match.md)<br>
+[fw_format](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/blob/main/docs/fw_format.md)<br>
+[mcu_mem_map](https://github.com/RE3CON/Quansheng_UV-K5_Firmware/blob/main/docs/mcu_mem_map.md)<br>
