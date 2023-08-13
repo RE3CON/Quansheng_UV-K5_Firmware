@@ -12,3 +12,6 @@ to hide type: ***rmgcms***<br>
 Links:<br>
 [Quansheng Downloads](http://en.qsfj.com/support/downloads/3002)<br>
 [4pda use Google Translate](https://4pda.to/forum/index.php?showtopic=1071343&st=400)
+
+## Readme:
+cfg_mem_map.md
