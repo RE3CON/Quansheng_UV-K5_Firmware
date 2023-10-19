@@ -3,7 +3,7 @@
 @del /F temp\fw.dec.bin temp\fw.ver.bin 2>NUL
 
 @echo Extracting firmare...
-c:\python\python.exe qsfirm.py unpack enc_2-01-31.bin temp\fw.dec.bin temp\fw.ver.bin
+c:\python\python.exe qsfirm.py unpack k5_v2.01.31_publish.bin temp\fw.dec.bin temp\fw.ver.bin
 
 :: mods implying firmware grow
 :: please choose only one of them and always 
