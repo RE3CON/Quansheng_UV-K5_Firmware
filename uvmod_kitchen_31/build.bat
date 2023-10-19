@@ -11,6 +11,7 @@ python mod_enable_swd_port.py        temp\fw.dec.bin
 python mod_custom_freq_ranges.py     temp\fw.dec.bin
 python mod_remove_tx_limits.py       temp\fw.dec.bin
 python mod_enable_am_everywhere.py   temp\fw.dec.bin
+python mod_change_RF_path_VHF_UHF_Switch_v31.py temp\fw.dec.bin
 python mod_universal_version.py      temp\fw.ver.bin
 
 :: end of mods
@@ -18,3 +19,4 @@ python mod_universal_version.py      temp\fw.ver.bin
 @echo Repacking firmware...
 python qsfirm.py pack temp\fw.dec.bin temp\fw.ver.bin k5_v2.01.31_MODDED.bin
 
+cmd /k
