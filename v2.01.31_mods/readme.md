@@ -18,6 +18,7 @@
 
 ### `mod_2to1_compressor.py`
 My contribution: Activates only compressor part of the integrated compander, to get better modulation dynamics.
+
 Auto-disables when VOX set, to preserve accuracy in digital modes.
 <hr>
 
@@ -50,17 +51,21 @@ After applying this mod, the FREQ CLONE and CTC/DCS SCAN function ([F]+4, [F]+Sc
 
 ### `mod_change_RF_switch_threshold.py`
 Allows to change the threshold frequencies for VHF/UHF switch of the RF path and output amplifier bias.
+
 Factory setting is 280 MHz for both of them.
+
 Better power and/or sensitivity may be observed in some cases.
 <hr>
 
 ### `mod_change_tx_limits.py`
 Self explanatory. Please be aware that TXing below ~80MHz is known to produce a considerable amount of spurious emissions with this unit.
+
 Smarter use is the wiser mod_enable_tx_50to850_except_limits.py .
 <hr>
 
 ### `mod_enable_tx_50to850_except_limits.py`
 Creates a band block for TX frequencies: an interval where you're not allowed to xmit, even if frequency domain is unlocked.
+
 Please be aware that TXing below ~80MHz is known to produce a considerable amount of spurious emissions with this unit.
 
 Customization: Blocks AIR band by default. You can change it at the beginning of the script.
@@ -75,12 +80,15 @@ My contribution: Completely reworked the display routine. Now better nested and 
 Adds a customisable boot screen, sparing ROM bytes by allowing an offset from top of the screen.
 
 Customization: before drawing logo, screen buffer is filled with value defined in `clean_pattern` variable. Have a look at utils/fonts_and_graphics/Clearing_patterns.bmp
+
 To make your own logo, get a 128x64 (max) BMP or PNG file, then convert it using utils/fonts_and_graphics/img2cpp.htm
+
 Import file, change for "Vertical drawing" at the end of the page, then click generate. The code you get have to be pasted into the python script. Look at "MARIO", it's self explanatory.
 <hr>
 
 ### `mod_custom_ctcss_codes.py`
 My contribution: Genuine CTCSS embedded code list is badly numbered. I restored CTCSS base code list+extended codes to the end.
+
 Please keep in mind that Quansheng codeplug software won't be aware of the new ordered list: Just check your channels after programming.
 <hr>
 
@@ -92,6 +100,7 @@ Change fonts used to display big and small digits.
 
 ### `mod_custom_font.py`
 My contribution: Integrated some good fonts (Apple Chicago, CP/M..)
+
 Customization:
 You can generate your own fonts using utils/fonts_and_graphics/img2cpp.htm . You just have to insert generated string to the beginning of the python script, at font = b'\STRINGSTRINGSTRING'
 <hr>
@@ -106,7 +115,9 @@ My contribution: Aims to produce a better MDC signalling when MDC1200 roger beep
 
 ### `mod_custom_noaa_freqs.py`
 My contribution: default is now first 1-7 GMRS channels and 22-20 GMRS call/repeater channels. This is because of forced 12.5kHz deviation.
+
 Also check mod_disable_1050hz_noaa, to use these without 1050Hz toneburst.
+
 Customization: Just sets new values for frequencies in NOAA scan list, nothing less, nothing more. 
 <hr>
 
@@ -138,11 +149,13 @@ On ALL frequencies, AM mode will be switchable.
 
 ### `mod_enable_swd_port.py`
 If you are experimenting deep modifications, need active debugging or playing with EEPROM, this could be useful, even for brick recovery.
+
 Not harmful to enable.
 <hr>
 
 ### `mod_fm_radio_64-108mhz.py`
 My contribution: Now a working 64 to 108MHz, and function keys remapping (F+VFO: memory recall, F+FM:scan, F+FC:auto-MR)
+
 Extends WFM receive range from 64MHz to 108MHz.
 <hr>
 
@@ -166,7 +179,9 @@ Edits initialization routine of ST7565 (LCD controller) to change default LCD mo
 <hr>
 
 Here you can change low and high limit for each frequency band. 
+
 The underscore `_` symbol is omitted by python interpreter and is added only for better readability.
+
 So for example, if you want to fill the gap between 76 and 108Mhz then in second array change first limit from `76_000_000` to `107_999_990` or 
 if you want to extend above 600MHz then change last limit from `600_000_000` to `1300_000_000`. Please keep in mind that different ranges 
 are demodulated slightly different inside BK4819 chip, and some ranges have enabled AM demodulation while other don't. 
@@ -208,15 +223,20 @@ Default value for copying setting over the air aka "AIR COPY" is 410.025 MHz. Yo
 
 ### `mod_roger_beep.py`
 My contribution: Now with single, dual, or triple beep!  Completely rewrote roger routine.
-You can change duration and/or frequency for each tone used. Put 0 in correct duration if single ou dual beep is preferred.
 
-Change "Roger" beep tones.
+Changes "Roger" beep tone number and frequency(ies).
+
+Customization: You can change duration and/or frequency for each tone used. Put 0 in correct duration if single ou dual beep is preferred.
 <hr>
 
 ### `mod_rssi_bars_SOS_alert.py`
-My contribution: Change RSSI meter behaviour, using 7 possible step bars. Evaluating RSSI is done via maths linear approach.
-Completely rewrote routine, and created new function to blink flashlight (call, alarm)
+
+My contribution: Change RSSI meter behaviour, using 7 possible step bars. Evaluating RSSI is done via maths linear approach. Adds Morse code flashes as an added bonus.
+
+Rewrote some routines here, and created new function to blink flashlight (call, alarm)
+
 New! Now Alarm (panic button) will trigger a custom Morse code you can change if you want. Default is classic SOS pattern ... --- ...
+
 A different Morse pattern can also be chosen for classic blinking of flashlight (or SelCall ringing)
 
 Customization:
@@ -224,10 +244,11 @@ Customization:
 panic_pat = <alarm_custom_binary_pattern>
 blink_pat = <blinking_custom_binary_pattern>
 ```
-VHF: @14B2 origin offset, @14B4 slope, @14B6 s=0 limit. UHF: @14CE origin offset, @14D0 slope, @14D2 s=0 limit.
+VHF: @14B2 origin offset, @14B4 slope, @14B6 s=0 limit. UHF: @14CE origin offset, @14D0 slope, @14D2 s=0 limit. Needs easier method to customize, anyway.
+
 NEED to change Symbols font: 7 bars+eliminate antenna icon. If you disable this mod, please replace Symbols_mod.bmp in v31 directory by Symbols_mod_(without_rssi_patch).bmp .
 
-Upgrades genuine RSSI meter. Also makes use of freed ROM space to put new routines which make flashlight blink when called via DTMF SelCall, and when Alarm is triggered.
+Upgrades genuine RSSI meter. Also makes use of freed ROM space to put new routines which make flashlight follow a defined Morse pattern when called via DTMF SelCall, and when Alarm is triggered.
 <hr>
 
 ### `mod_widen_scr_range`
