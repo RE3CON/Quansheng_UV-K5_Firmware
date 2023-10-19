@@ -3,7 +3,7 @@
 @del /F temp\fw.dec.bin temp\fw.ver.bin 2>NUL
 
 @echo Extracting firmare...
-c:\python\python.exe qsfirm.py unpack k5_v2.01.31_publish.bin temp\fw.dec.bin temp\fw.ver.bin
+c:\python\python.exe qsfirm.py unpack enc_2-01-31.bin temp\fw.dec.bin temp\fw.ver.bin
 
 :: mods implying firmware grow
 :: please choose only one of them and always 
@@ -45,7 +45,7 @@ c:\python\python.exe v31\mod_mic_gain.py temp\fw.dec.bin
 REM c:\python\python.exe v31\mod_negative_screen.py temp\fw.dec.bin
 c:\python\python.exe v31\mod_ota_qrg.py temp\fw.dec.bin
 c:\python\python.exe v31\mod_roger_beep.py temp\fw.dec.bin
-c:\python\python.exe v31\mod_rssibars.py temp\fw.dec.bin
+c:\python\python.exe v31\mod_rssibars_SOS_alert.py temp\fw.dec.bin
 c:\python\python.exe v31\mod_widen_scr_range.py temp\fw.dec.bin
 c:\python\python.exe v31\mod_bugspatch.py temp\fw.dec.bin
 :: end of mods

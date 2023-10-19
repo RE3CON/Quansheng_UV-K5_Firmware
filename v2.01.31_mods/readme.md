@@ -213,11 +213,17 @@ You can change duration and/or frequency for each tone used. Put 0 in correct du
 Change "Roger" beep tones.
 <hr>
 
-### `mod_rssi_bars.py`
+### `mod_rssi_bars_SOS_alert.py`
 My contribution: Change RSSI meter behaviour, using 7 possible step bars. Evaluating RSSI is done via maths linear approach.
 Completely rewrote routine, and created new function to blink flashlight (call, alarm)
+New! Now Alarm (panic button) will trigger a custom Morse code you can change if you want. Default is classic SOS pattern ... --- ...
+A different Morse pattern can also be chosen for classic blinking of flashlight (or SelCall ringing)
 
 Customization:
+```python
+panic_pat = <alarm_custom_binary_pattern>
+blink_pat = <blinking_custom_binary_pattern>
+```
 VHF: @14B2 origin offset, @14B4 slope, @14B6 s=0 limit. UHF: @14CE origin offset, @14D0 slope, @14D2 s=0 limit.
 NEED to change Symbols font: 7 bars+eliminate antenna icon. If you disable this mod, please replace Symbols_mod.bmp in v31 directory by Symbols_mod_(without_rssi_patch).bmp .
 
