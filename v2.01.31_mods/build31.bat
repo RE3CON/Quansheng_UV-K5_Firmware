@@ -3,7 +3,7 @@
 @del /F temp\fw.dec.bin temp\fw.ver.bin 2>NUL
 
 @echo Extracting firmare...
-c:\python\python.exe qsfirm.py unpack k5_v2.01.31_publish.bin temp\fw.dec.bin temp\fw.ver.bin
+c:\python\python.exe qsfirm.py unpack k5_v2.01.31_publish.bin temp\fw.dec.bin
 
 :: mods implying firmware grow
 :: please choose only one of them and always 
@@ -50,6 +50,6 @@ c:\python\python.exe v31\mod_widen_scr_range.py temp\fw.dec.bin
 c:\python\python.exe v31\mod_bugspatch.py temp\fw.dec.bin
 :: end of mods
 
-@echo Adding header and ciphering...
-c:\python\python.exe qsfirm.py pack temp\fw.dec.bin temp\fw.ver.bin k5_v2.01.31_MODDED.bin
+@echo Adding v2 header and ciphering...
+c:\python\python.exe qsfirm.py pack temp\fw.dec.bin 2.00.00 k5_v2.01.31_MODDED.bin
 

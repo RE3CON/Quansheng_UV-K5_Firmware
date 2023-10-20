@@ -1,10 +1,9 @@
 import sys,os
 
-
 # Handle arguments 
-if len(sys.argv)!=5 or sys.argv[1] not in ['unpack','pack'] : print(f'''
-Usage: {os.path.basename(sys.argv[0])} unpack <encoded_firmware_in.bin> <decoded_firmware_out.bin> <versionfile_out.bin>
-       {os.path.basename(sys.argv[0])} pack <decoded_firmware_in.bin> <versionfile_in.bin> <encoded_firmware_out.bin>
+if sys.argv[1] not in ['unpack','pack'] or sys.argv[1] == 'unpack' and len(sys.argv)!=4 or sys.argv[1] == 'pack' and (len(sys.argv)!=5 or len(sys.argv[3])!=7): print(f'''
+Usage: {os.path.basename(sys.argv[0])} unpack <encoded_firmware_in.bin> <decoded_firmware_out.bin>
+       {os.path.basename(sys.argv[0])} pack <decoded_firmware_in.bin> <target_version as X.XX.XX> <encoded_firmware_out.bin>
        ''') ; sys.exit(1)
 
 # CRC Routines
@@ -31,7 +30,6 @@ def crc16_ccitt_le(data):
     crc = crc16_ccitt(data)
     return bytes([crc & 0xFF,]) + bytes([crc>>8,])
 
-
 # Encoding/decoding algo
 def firmware_xor(fwcontent):
     XOR_ARRAY = bytes.fromhex('4722c0525d574894b16060db6fe34c7cd84ad68b30ec25e04cd9007fbfe35405e93a976bb06e0cfbb11ae2c9c15647e9baf142b6675f0f96f7c93c841b26e14e3b6f66e6a06ab0bfc6a5703aba189e271a535b71b1941e18f2d6810222fd5a2891dbba5d64c6fe86839c501c730311d6af30f42c77b27dbb3f29285722d6928b')
@@ -41,8 +39,6 @@ def firmware_xor(fwcontent):
     for i in range(0,len(ba)):
         ba[i] ^= XOR_ARRAY[i%XOR_LEN]
     return bytes(ba)
-
-
 
 #-------- main ------------------
 if sys.argv[1]=='unpack':
@@ -59,12 +55,9 @@ if sys.argv[1]=='unpack':
     open(sys.argv[3],'wb').write(decoded_firmware[:0x2000]+decoded_firmware[0x2000+16:])
     print(f'Saved decoded firmware to {sys.argv[3]}')
 
-    #save 16 bytes with version string to file
-    open(sys.argv[4],'wb').write(decoded_firmware[0x2000:0x2000+16])
-    print(f'Saved version info to {sys.argv[4]}')
-
-
-
+    #display downgrade limiting version level
+    version = decoded_firmware[0x2000:0x2000+7]
+    print('This firmware has version',version.decode('ascii'))
 
 elif sys.argv[1]=='pack':
     decoded_firmware = open(sys.argv[2],'rb').read()
@@ -88,8 +81,7 @@ elif sys.argv[1]=='pack':
         print("WARNING: Firmware size exceeds the maximum allowed size of 0xefff (61439) bytes!")
         print("Using an oversize firmware will not work correctly and may lead to freezes, crashes and defects.\n")
     
-    
-    version_info     = open(sys.argv[3],'rb').read()[0:16]
+    version_info = bytearray(sys.argv[3],'ascii') + b'\x00'*9
     
     firmware_with_version = decoded_firmware[0:0x2000] + version_info + decoded_firmware[0x2000:]
     firmware_with_version_encoded = firmware_xor(firmware_with_version)
