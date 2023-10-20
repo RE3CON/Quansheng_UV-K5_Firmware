@@ -10,6 +10,25 @@ pip install pyserial
 Do not confuse with `serial` module which is incompatible with this lib.
 <hr>
 
+
+
+### `bin2array.py`
+Usage sample:
+```
+bin2array.py image_logo.bin logo_bytearray.txt
+```
+Sample output:
+```
+Binary successfully converted to logo_bytearray.txt
+```
+Description:<br>
+Useful script to convert RAW image data (logos, fonts, icons..) to a text-formatted bytearray for use in mods.
+
+Please note you can use Img2Cpp `fonts_and_graphics\image2cpp.htm` to convert standard image files to ready-to-use bytearray strings and vice-versa.
+<hr>
+
+
+
 ### `fw_unpack.py`
 Usage sample:
 ```
@@ -94,6 +113,31 @@ Script just reboots device. Command not produce any output in normal situation. 
 <hr>
 
 
+
+### `util_051f_ramreader.py`
+Arguments:
+```
+util_051f_ramreader.py <COMx> <RAM address> <length> [output_file]
+```
+Description:<br>
+This script requires `mod_051f_ramreader.py` to be applied. This mod replaces a useless routine which is responsible for reply to command `0x051F` sent by uart. New function can be used to read any memory area.
+
+For example, you may want to capture the entire screen framebuffer:
+```
+> util_051f_ramreader.py COM4 0x20000684 0x400 screen_buffer.bin
+```
+
+Then you can use provided `bin2array.py` to convert RAW bytes in screen_buffer.bin to a bytearray in text-format, which in turn you can preview/save as bitmap using `fonts_and_graphics/Img2Cpp.htm`
+
+The last parameter is optional, if omitted you'll get raw hex data of selected memory area. Useful for reading variables. Example displaying current microphone gain value:
+```
+> util_051f_ramreader.py COM4 0x20000ad6 0x1
+18
+```
+<hr>
+
+
+
 ### `batt_calibrator.py`
 Arguments:
 ```
@@ -117,3 +161,37 @@ now follow steps:
 
 You can backup current calibration values by starting `batt_calibrator.py COM1 read`
 
+
+
+### `mic_calibrator.py`
+Arguments:
+```
+mic_calibrator.py <COMx> <read | write  lev0 lev1 lev2 lev3 lev4>
+```
+
+Description:<br>
+Allows to update the 5 Mic gain levels from menu by altering each of their corresponding factors in EEPROM. Max factor value is 31. Provides precise control over Mic sensitivity.
+
+Usage sample:
+```
+> mic_calibrator.py COM4 read
+Level 0: 8 /31 (Lowest)
+Level 1: 10 /31 (Lower)
+Level 2: 16 /31 (Mid)
+Level 3: 24 /31 (Higher)
+Level 4: 30 /31 (Highest)
+```
+
+If you want to alter these values, you have to use `write` command:
+```
+> mic_calibrator.py COM4 write 8 10 16 24 31
+OK. New values written to eeprom
+ ....
+PLEASE REBOOT RADIO FOR THE CHANGES TO TAKE EFFECT !!!
+```
+
+
+Then reboot radio.
+<hr>
+
+	LarSeN.
