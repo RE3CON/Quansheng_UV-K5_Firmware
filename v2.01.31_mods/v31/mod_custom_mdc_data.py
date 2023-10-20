@@ -30,7 +30,10 @@ if fw[0xD358:0xD358+7] == b'\xA2\xF1\x46\x74\xA4\x61\x44':
     fw[0xD358:0xD358+14]=mdc_datale
     print('MDC EOT data found, updated OK')
     fw[0xAE46:0xAE46+86]=patchcode
+    fw[0xAE1C:0xAE1C+1]=b'\x60'		#disable useless tone2 (should be used to select FSK speed. In AFSK mode this mixes MDC data sound with a stupid 1200Hz tone)
 ##    fw[0xAEA0:0xAEA0+2]=b'\xF3\x37'   #choose AA pattern for preamble. genuine: pattern depends on Syncbyte 0's MSB
+##    fw[0xAEA0:0xAEA0+2]=b'\xC1\x03'	#this selects FSK instead of chinese 'FFSK' (which is in fact AFSK)
+    fw[0xAEA0:0xAEA0+2]=b'\xC3\x3F'	#correct AFSK init
     fw[0xAE9C:0xAE9C+2]=sync2
     fw[0xAEAC:0xAEAC+2]=sync1
     fw[0xAEB0:0xAEB0+2]=sync3
