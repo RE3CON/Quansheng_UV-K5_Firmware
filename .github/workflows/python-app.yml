@@ -31,4 +31,4 @@ jobs:
      
     - name: make
       working-directory: uvmod_kitchen_v3.00.15 #./uvmod_kitchen_v3.00.15
-      run: build.bat 
+      run: uvmod_kitchen_v3.00.15/build.bat 
