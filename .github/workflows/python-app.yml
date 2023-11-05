@@ -8,6 +8,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    paths: ./uvmod_kitchen_v3.00.15
 
 permissions: write-all
 
@@ -29,4 +30,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
      
     - name: make
-      run: uvmod_kitchen_v3.00.15/build.sh 
+      working-directory: ./uvmod_kitchen_v3.00.15
+      run: build.bat 
