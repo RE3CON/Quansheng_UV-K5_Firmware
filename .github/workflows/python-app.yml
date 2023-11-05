@@ -1,5 +1,6 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
 name: Python application
 
 on:
@@ -27,11 +28,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyserial
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-- name: change directory
-      working-directory: .. #./uvmod_kitchen_v3.00.15
+     
+    - name: change directory
+      working-directory: ./uvmod_kitchen_v3.00.15
       run: cd ..
      
     - name: make
       working-directory: uvmod_kitchen_v3.00.15 #./uvmod_kitchen_v3.00.15
-      run: build.bat 
+      run: make build.bat 
