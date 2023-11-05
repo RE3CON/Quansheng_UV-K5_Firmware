@@ -33,6 +33,6 @@ jobs:
       working-directory: ./uvmod_kitchen_v3.00.15
       run: cd ..
      
-    - name: cmake Build.bat
+    - name: cmd Build.bat
       working-directory: uvmod_kitchen_v3.00.15 #./uvmod_kitchen_v3.00.15
-      run: open build.bat 
+      run: cmd build.bat 
