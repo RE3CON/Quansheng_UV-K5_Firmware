@@ -8,7 +8,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    paths: git RE3CON/Quansheng_UV-K5_Firmware/uvmod_kitchen_v3.00.15/
+    paths: RE3CON/Quansheng_UV-K5_Firmware/uvmod_kitchen_v3.00.15/
 
 permissions: write-all
 
