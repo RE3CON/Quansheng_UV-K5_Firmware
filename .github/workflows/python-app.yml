@@ -27,6 +27,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyserial
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - 
+     
     - name: make
       run: uvmod_kitchen_v3.00.15/build.bat 
